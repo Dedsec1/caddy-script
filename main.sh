@@ -263,7 +263,6 @@ function install_caddy()
   create_caddyfile
   echo "Setting up directories"
   sudo -u root -l caddy -c "mkdir log"
-  mkdir /var/www
   echo "Setting up directories for ${domain}"
   sudo -u root caddy -c "mkdir log/${domain}"
   mkdir /var/www/"${domain}"
