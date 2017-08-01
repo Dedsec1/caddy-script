@@ -262,10 +262,10 @@ function install_caddy()
   echo "Creating Caddyfile."
   create_caddyfile
   echo "Setting up directories"
-  runuser -l caddy -c "mkdir log"
+  $USER -l caddy -c "mkdir log"
   mkdir /var/www
   echo "Setting up directories for ${domain}"
-  runuser -l caddy -c "mkdir log/${domain}"
+  $USER -l caddy -c "mkdir log/${domain}"
   mkdir /var/www/"${domain}"
   if [ "$wordpress" = 0 ] && [ "$shopware" = 0 ]; then
     echo '<html><head><title>Hello World</title></head><body>Hello World</body></html>' > /var/www/"${domain}"/index.html
@@ -634,7 +634,7 @@ EOT
   fi
   if [[ $TRAVIS_CI == 1 ]]; then
     ulimit -n 8192
-    runuser -l caddy -c "/usr/local/bin/caddy -conf=/home/caddy/Caddyfile &"
+    $USER -l caddy -c "/usr/local/bin/caddy -conf=/home/caddy/Caddyfile &"
   else
     service caddy start
     service caddy status
